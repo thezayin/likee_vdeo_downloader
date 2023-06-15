@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Likee Video Downloader</string>
+    <string name="app_name">Likee Downloader</string>
 
     <!--api links-->
     <string name="download_started">Download Started</string>

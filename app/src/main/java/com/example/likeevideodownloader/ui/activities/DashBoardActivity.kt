@@ -65,7 +65,6 @@ import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.remoteconfig.BuildConfig
-import com.permissionx.guolindev.PermissionX
 import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
@@ -179,7 +178,7 @@ class DashBoardActivity : AppCompatActivity() {
                     )
                 )
 
-              if (!Patterns.WEB_URL.matcher(ll).matches()) {
+                if (!Patterns.WEB_URL.matcher(ll).matches()) {
                     enterValidLink()
                     Utils.setToast(
                         this@DashBoardActivity,
@@ -202,14 +201,17 @@ class DashBoardActivity : AppCompatActivity() {
                     }
                     when (urlType) {
                         FACEBOOK_URL -> {
-                           enterValidLink()
+                            enterValidLink()
                         }
+
                         INSTA_URL -> {
-                        enterValidLink()
+                            enterValidLink()
                         }
+
                         SNAPCHAT_URL -> {
-                          enterValidLink()
+                            enterValidLink()
                         }
+
                         LIKEE_url -> getlikeeData()
                         MOZ_URL -> {
                             enterValidLink()
@@ -314,6 +316,9 @@ class DashBoardActivity : AppCompatActivity() {
             btnDrawer.setOnClickListener {
                 myDrawerLayout.openDrawer(GravityCompat.START)
             }
+            layout.setOnClickListener {
+                myDrawerLayout.openDrawer(GravityCompat.START)
+            }
 
 
             askReadPermission()
@@ -411,7 +416,6 @@ class DashBoardActivity : AppCompatActivity() {
             videos = db?.recentVideos
         }
     }
-
 
 
     private fun handleIntent() {
@@ -695,7 +699,7 @@ class DashBoardActivity : AppCompatActivity() {
             //if link not found
             if (link == null || link == "") {
                 Log.d("jejeDRS", "Empty $link")
-                val dialog = BottomSheetDialog(this,R.style.SheetDialog)
+                val dialog = BottomSheetDialog(this, R.style.SheetDialog)
                 dialog.setContentView(R.layout.dialog_bottom_video_not_found_)
                 val btnOk = dialog.findViewById<Button>(R.id.btn_clear)
 
