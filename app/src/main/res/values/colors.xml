@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="text_color">#FF000000</color>
+    <color name="ed_color">#FFFFFFFF</color>
+    <color name="yt_red">#FF0000</color>
+    <color name="light_grey_two">#B4B4B4</color>
+    <color name="pink">#FF7676</color>
+    <color name="light_grey">#DAD1D1</color>
+    <color name="warm_orange">#FF2222</color>
+    <color name="warm_yellow">#FCE38A</color>
+    <color name="dark_pink">#FF0281</color>
+    <color name="warm_pink">#fc746f</color>
+
+    <color name="background">#FFFFFFFF</color>
+
+    <color name="grey_level_1">#646464</color>
+    <color name="grey_level_2">#4E4E4E</color>
+    <color name="grey_level_3">#393939</color>
+    <color name="grey_level_4">#282828</color>
+    <color name="grey_level_4_5">#232323</color>
+    <color name="grey_level_5">#1E1E1E</color>
+
+
+    <color name="bg_card">@color/white</color>
+    <color name="bg_input">@color/white</color>
+    <color name="txt_clr">@color/black</color>
+
+    <color name="bg_rs">#E1E4FF</color>
+    <color name="btn_background">#E8E8E8</color>
+</resources>

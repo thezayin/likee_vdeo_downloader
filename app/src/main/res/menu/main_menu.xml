@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText">
+
+    <item
+        android:id="@+id/nav_terms"
+        android:icon="@drawable/ic_terms_cond"
+        android:title="Terms and conditions" />
+
+    <item
+        android:id="@+id/nav_privacy"
+        android:icon="@drawable/ic_term_conditions"
+        android:title="Privacy Policy" />
+
+    <item
+        android:id="@+id/nav_about"
+        android:icon="@drawable/ic_about_us"
+        android:title="About us" />
+
+    <item
+        android:id="@+id/nav_contact"
+        android:icon="@drawable/ic_email"
+        android:title="Contact us" />
+
+    <item
+        android:id="@+id/nav_share"
+        android:icon="@drawable/ic_share"
+        android:title="Share" />
+
+</menu>
