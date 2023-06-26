@@ -247,36 +247,27 @@ class DashBoardActivity : AppCompatActivity() {
             navView.setNavigationItemSelectedListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.nav_terms -> {
-                        Toast.makeText(
-                            this@DashBoardActivity,
-                            "Here will be the Link",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        intent = Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("https://bluelocksolutions.blogspot.com/2023/06/likee-downloader-terms-and-conditions.html")
+                        )
+                        startActivity(intent)
                         true
                     }
 
                     R.id.nav_privacy -> {
-                        Toast.makeText(
-                            this@DashBoardActivity,
-                            "Here will be the Link",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        true
-                    }
-
-                    R.id.nav_about -> {
-                        Toast.makeText(
-                            this@DashBoardActivity,
-                            "Here will be the Link",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        intent = Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("https://bluelocksolutions.blogspot.com/2023/06/privacy-policy-for-likee-downloader.html")
+                        )
+                        startActivity(intent)
                         true
                     }
 
                     R.id.nav_contact -> {
                         val emailIntent = Intent(
                             Intent.ACTION_SENDTO,
-                            Uri.parse("mailto:zainshahidbuttt@gamail.com")
+                            Uri.parse("mailto:blue.lock.testing@gamail.com")
                         )
                         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "FB Reel Downloader")
                         emailIntent.putExtra(Intent.EXTRA_TEXT, "your message here")

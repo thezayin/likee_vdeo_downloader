@@ -14,11 +14,6 @@
         android:title="Privacy Policy" />
 
     <item
-        android:id="@+id/nav_about"
-        android:icon="@drawable/ic_about_us"
-        android:title="About us" />
-
-    <item
         android:id="@+id/nav_contact"
         android:icon="@drawable/ic_email"
         android:title="Contact us" />
