@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "866671954070",
-    "project_id": "likee-video-downloader-a10ec",
-    "storage_bucket": "likee-video-downloader-a10ec.appspot.com"
+    "project_number": "960589665046",
+    "project_id": "likee-video-downloader-4e56e",
+    "storage_bucket": "likee-video-downloader-4e56e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:866671954070:android:d13c670f0804ca08579ab7",
+        "mobilesdk_app_id": "1:960589665046:android:b57678a21911aa49d9b637",
         "android_client_info": {
-          "package_name": "com.example.likeevideodownloader"
+          "package_name": "com.bluelock.likeevideodownloader"
         }
       },
       "oauth_client": [
         {
-          "client_id": "866671954070-e69k7eofgdsqfpjljbfbf0571pc0jif9.apps.googleusercontent.com",
+          "client_id": "960589665046-i4pk0rlbnpe8q0pagk7dpte44k9nabf6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBV8dXkyq-7kfD-uaf-VDAvB28wKykzgK4"
+          "current_key": "AIzaSyD4-lE7XKB96ntQZExZOlewkFbBmz12o0c"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "866671954070-e69k7eofgdsqfpjljbfbf0571pc0jif9.apps.googleusercontent.com",
+              "client_id": "960589665046-i4pk0rlbnpe8q0pagk7dpte44k9nabf6.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.likeevideodownloader.ui.presentation.splash.SplashFragment"
+        android:name="com.bluelock.likeevideodownloader.ui.presentation.splash.SplashFragment"
         android:label="SplashFragment" />
 </navigation>
