@@ -44,7 +44,7 @@
     <color name="bluesh_gray">#80D0FF</color>
 
     <color name="background">#1E1E1E</color>
-    <color name="surface">#000000</color>
+    <color name="surface">#e6e7e9</color>
     <color name="surface_variant">#3A3A3A</color>
     <color name="surface_variant_2">#646464</color>
     <color name="primary_blue">#80D0FF</color>

@@ -21,7 +21,7 @@ public class GoogleNativeFull {
     final private int totalLevels = 4;
     private ArrayList<ArrayList<Object>> adUnits;
 
-    private final String adUnitId = "ca-app-pub-9507635869843997/8657863145";
+    private final String adUnitId = "ca-app-pub-9507635869843997/4464815735";
 
     public GoogleNativeFull(Context context) {
         instantiateList();

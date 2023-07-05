@@ -38,8 +38,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
     override fun onCreatedView() {
         binding.apply {
 
-            val topBar = activity?.findViewById<CardView>(R.id.top_bar)
-            topBar?.visibility = View.GONE
 
             progressStatus = progressBar.progress
 

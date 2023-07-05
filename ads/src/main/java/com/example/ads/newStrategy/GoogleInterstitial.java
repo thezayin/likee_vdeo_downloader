@@ -19,7 +19,7 @@ public class GoogleInterstitial {
     private final int totalLevels = 4;
     private ArrayList<ArrayList<Object>> adUnits;
 
-    private final String adUnitId = "ca-app-pub-9507635869843997/4910189826";
+    private final String adUnitId = "ca-app-pub-9507635869843997/9908714105";
 
     public GoogleInterstitial(Context context) {
         instantiateList();

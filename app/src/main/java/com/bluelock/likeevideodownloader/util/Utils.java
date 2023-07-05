@@ -26,6 +26,9 @@ import androidx.documentfile.provider.DocumentFile;
 import com.bluelock.likeevideodownloader.R;
 import com.bluelock.likeevideodownloader.db.Database;
 import com.bluelock.likeevideodownloader.models.FVideo;
+import com.bluelock.likeevideodownloader.remote.RemoteConfig;
+import com.example.ads.GoogleManager;
+import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import org.json.JSONArray;

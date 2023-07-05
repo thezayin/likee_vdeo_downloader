@@ -14,7 +14,7 @@ private const val SHOW_APP_OPEN = "show_app_open_ad"
 private const val SHOW_INTERSTITIAL = "show_interstitial"
 private const val NATIVE_AD = "native_ad_on_all_features"
 private const val SHOW_REWARD_AD = "show_reward_ad"
-
+private const val SHOW_DROP_DOWN = "show_drop_down_dialog"
 @Singleton
 class RemoteConfig @Inject constructor() {
 
@@ -23,6 +23,7 @@ class RemoteConfig @Inject constructor() {
         SHOW_INTERSTITIAL to true,
         NATIVE_AD to true,
         SHOW_REWARD_AD to true,
+        SHOW_DROP_DOWN to true,
     )
 
     private val config = FirebaseRemoteConfig.getInstance().apply {
@@ -47,5 +48,6 @@ class RemoteConfig @Inject constructor() {
 
     val nativeAd: Boolean
         get() = config[NATIVE_AD].asBoolean()
-
+    val showDropDownAd: Boolean
+        get() = config[SHOW_DROP_DOWN].asBoolean()
 }
