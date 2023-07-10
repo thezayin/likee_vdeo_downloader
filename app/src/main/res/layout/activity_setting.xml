@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_20sdp"
         android:paddingHorizontal="@dimen/_25sdp"
-        android:text="FaceBook Downloader"
+        android:text="Likee Downloader"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="@dimen/_16ssp"
@@ -246,4 +246,5 @@
             android:layout_height="match_parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_drop_down" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

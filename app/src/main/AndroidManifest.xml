@@ -5,13 +5,14 @@
     <application
         android:name=".util.App"
         android:allowBackup="true"
-        tools:replace="android:fullBackupContent"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/ic_like"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_like"
         android:supportsRtl="true"
         android:theme="@style/Theme.LikeeVideoDownloader"
+        tools:replace="android:fullBackupContent"
         tools:targetApi="31">
         <activity
             android:name=".ui.activities.MainActivity"
@@ -22,9 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.DashBoardActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize"/>
-        <activity android:name=".ui.activities.SettingActivity"/>
+        <activity
+            android:name=".ui.activities.DashBoardActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity android:name=".ui.activities.SettingActivity" />
+        <activity android:name=".ui.activities.DownloadedActivity" />
     </application>
 
 </manifest>

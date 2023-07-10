@@ -189,7 +189,9 @@ class SettingActivity : AppCompatActivity() {
             binding.dropLayout.visibility = View.VISIBLE
 
             binding.btnDropDown.setOnClickListener {
-                binding.dropLayout.visibility = View.GONE
+                showInterstitialAd {
+                    binding.dropLayout.visibility = View.GONE
+                }
             }
             binding.btnDropUp.visibility = View.INVISIBLE
 

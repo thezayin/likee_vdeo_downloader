@@ -23,14 +23,14 @@ public class GoogleBanner {
 
     private static final String TAG = "GoogleBanner";
 
-    public static final String BANNER_TEST = "ca-app-pub-3940256099942544/6300978111";
-    public static final String BANNER_ALL = "ca-app-pub-9507635869843997/7536353166";
+    public static final String BANNER_TEST = "ca-app-pub-9507635869843997/1119366048";
+    public static final String BANNER_ALL = "ca-app-pub-9781925194514571/4688435804";
     public static final String BANNER_MEDIUM = "ca-app-pub-9781925194514571/4688435804";
     public static final String BANNER_HIGH = "ca-app-pub-9781925194514571/4688435804";
     public static final String BANNER_FOURTH = "ca-app-pub-9781925194514571/4688435804";
-    public static final String BANNER_FIFTH = "ca-app-pub-9507635869843997/7536353166";
+    public static final String BANNER_FIFTH = "ca-app-pub-9781925194514571/4688435804";
 
-    private final String adUnitId = "ca-app-pub-9507635869843997/2431477514";
+    private final String adUnitId = "ca-app-pub-9507635869843997/1119366048";
 
     private ArrayList<ArrayList<Object>> adUnits;
     final private int totalLevels = 4;

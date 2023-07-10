@@ -3,19 +3,18 @@ package com.bluelock.likeevideodownloader.ui.presentation.splash
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.cardview.widget.CardView
 import androidx.lifecycle.lifecycleScope
-import com.bluelock.likeevideodownloader.R
 import com.bluelock.likeevideodownloader.databinding.FragmentSplashBinding
 import com.bluelock.likeevideodownloader.remote.RemoteConfig
 import com.bluelock.likeevideodownloader.ui.activities.DashBoardActivity
 import com.bluelock.likeevideodownloader.ui.presentation.base.BaseFragment
 import com.bluelock.likeevideodownloader.util.isConnected
 import com.example.ads.GoogleManager
+import com.example.ads.newStrategy.types.GoogleInterstitialType
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.android.gms.ads.interstitial.InterstitialAd
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -54,10 +53,14 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
                             if (getAppOpenAd()) {
                                 Log.d("jejesplash", "done")
                             } else {
-                                navigateToNextScreen()
+                                showInterstitialAd {
+                                    navigateToNextScreen()
+                                }
                             }
                         } else {
-                            navigateToNextScreen()
+                            showInterstitialAd {
+                                navigateToNextScreen()
+                            }
                         }
                         break
                     }
@@ -95,4 +98,32 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
 
         return false
     }
+
+    private fun showInterstitialAd(callback: () -> Unit) {
+        if (remoteConfig.showInterstitial) {
+            val ad: InterstitialAd? =
+                googleManager.createInterstitialAd(GoogleInterstitialType.MEDIUM)
+
+            if (ad == null) {
+                callback.invoke()
+                return
+            } else {
+                ad.fullScreenContentCallback = object : FullScreenContentCallback() {
+                    override fun onAdDismissedFullScreenContent() {
+                        super.onAdDismissedFullScreenContent()
+                        callback.invoke()
+                    }
+
+                    override fun onAdFailedToShowFullScreenContent(error: AdError) {
+                        super.onAdFailedToShowFullScreenContent(error)
+                        callback.invoke()
+                    }
+                }
+                ad.show(requireActivity())
+            }
+        } else {
+            callback.invoke()
+        }
+    }
+
 }

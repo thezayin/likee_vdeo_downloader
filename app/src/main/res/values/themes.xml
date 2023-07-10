@@ -17,6 +17,19 @@
         <item name="android:colorBackground">@android:color/transparent</item>
     </style>
 
+    <style name="CustomText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/black</item>
+        <item name="autoSizeMaxTextSize">17sp</item>
+        <item name="autoSizeMinTextSize">13sp</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="ContainersColor">
+        <item name="android:background">#CECCCBCB</item>
+
+    </style>
+
 
     <style name="Theme.LikeeVideoDownloader" parent="Base.Theme.LikeeVideoDownloader" />
 </resources>

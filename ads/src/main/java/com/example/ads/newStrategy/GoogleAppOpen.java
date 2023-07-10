@@ -13,14 +13,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
 
-import timber.log.Timber;
-
 public class GoogleAppOpen {
 
     final private int totalLevels = 4;
     private ArrayList<ArrayList<Object>> adUnits;
 
-    private final String adUnitId = "ca-app-pub-9507635869843997/8422170799";
+    private final String adUnitId = "ca-app-pub-9507635869843997/4847937031";
+
+    private final String high = "ca-app-pub-9507635869843997/3164934674";
+
+    private final String medium = "ca-app-pub-9507635869843997/2973362986";
+
+    private final String one = "ca-app-pub-9507635869843997/9347199645";
+
+    private final String two = "ca-app-pub-9507635869843997/9155627959";
+
 
     public GoogleAppOpen(Context context) {
         instantiateList();
@@ -31,11 +38,11 @@ public class GoogleAppOpen {
     private void instantiateList() {
         adUnits = new ArrayList<>();
 
-        adUnits.add(0, new ArrayList<Object>(Arrays.asList(adUnitId, new Stack<AppOpenAd>())));
-        adUnits.add(1, new ArrayList<Object>(Arrays.asList(adUnitId, new Stack<AppOpenAd>())));
+        adUnits.add(0, new ArrayList<Object>(Arrays.asList(high, new Stack<AppOpenAd>())));
+        adUnits.add(1, new ArrayList<Object>(Arrays.asList(medium, new Stack<AppOpenAd>())));
         adUnits.add(2, new ArrayList<Object>(Arrays.asList(adUnitId, new Stack<AppOpenAd>())));
-        adUnits.add(3, new ArrayList<Object>(Arrays.asList(adUnitId, new Stack<AppOpenAd>())));
-        adUnits.add(4, new ArrayList<Object>(Arrays.asList(adUnitId, new Stack<AppOpenAd>())));
+        adUnits.add(3, new ArrayList<Object>(Arrays.asList(one, new Stack<AppOpenAd>())));
+        adUnits.add(4, new ArrayList<Object>(Arrays.asList(two, new Stack<AppOpenAd>())));
     }
 
     public void loadAppopenStart(Context context) {
