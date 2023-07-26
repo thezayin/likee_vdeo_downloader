@@ -6,7 +6,7 @@
         android:id="@+id/adCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/background"
+        app:cardBackgroundColor="@color/ad_color"
         app:cardCornerRadius="16dp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -61,7 +61,7 @@
                     android:insetTop="0dp"
                     android:insetRight="0dp"
                     android:insetBottom="0dp"
-                    android:textColor="@color/primary_text"
+                    android:textColor="@color/white"
                     tools:text="Photofix" />
 
                 <com.google.android.material.button.MaterialButton

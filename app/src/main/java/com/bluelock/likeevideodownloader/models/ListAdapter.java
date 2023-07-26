@@ -55,7 +55,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder
                     .load(video.getFileUri())
                     .into(holder.ivThumbnail);
         } else {
-            holder.ivThumbnail.setImageResource(R.drawable.ic_video_file);
+            holder.ivThumbnail.setImageResource(R.drawable.ic_forward);
         }
 
         holder.tvVideoTitle.setText(video.getFileName());
@@ -102,112 +102,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder
         TextView tvVideoState;
         ImageView ivThumbnail;
         ConstraintLayout cvIcons;
-        ImageView ivFb;
-        ImageView ivMessenger;
-        ImageView ivWp;
-        ImageView ivDelete;
-        ImageView ivShare;
+
         View itemView;
 
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
             this.itemView = itemView;
-
-            tvVideoTitle = itemView.findViewById(R.id.tv_video_title);
-            tvVideoState = itemView.findViewById(R.id.tv_video_state);
-            ivThumbnail = itemView.findViewById(R.id.iv_thumbnail);
-            ivShare = itemView.findViewById(R.id.iv_share);
-            ivFb = itemView.findViewById(R.id.iv_fb);
-            ivMessenger = itemView.findViewById(R.id.iv_messenger);
-            ivWp = itemView.findViewById(R.id.iv_wp);
-            ivDelete = itemView.findViewById(R.id.iv_delete);
-            cvIcons = itemView.findViewById(R.id.cl_icons);
-
-            itemView.setOnClickListener(this);
-            itemView.setOnLongClickListener(this);
-
-
-            ivShare.setOnClickListener(v -> {
-
-                FVideo video = videos.get(getAdapterPosition());
-
-                Intent shareIntent = new Intent();
-                shareIntent.setAction(Intent.ACTION_SEND);
-                shareIntent.setType("video/mp4");
-
-                File file = new File(video.getFileUri());
-                Uri videoUri = FileProvider.getUriForFile(context,
-                        context.getApplicationContext().getPackageName() + ".provider", file);
-
-                shareIntent.putExtra(Intent.EXTRA_STREAM, videoUri);
-                context.startActivity(Intent.createChooser(shareIntent, "Send"));
-
-            });
-            ivDelete.setOnClickListener(v -> {
-                FVideo video = videos.get(getAdapterPosition());
-                deleteVideoFromFile(context, video);
-            });
-
-            ivFb.setOnClickListener(v -> {
-                if (!appInstalledOrNot(context, "com.facebook.katana")) {
-                    Toast.makeText(context, "App not Installed", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                FVideo video = videos.get(getAdapterPosition());
-
-                Intent shareIntent = new Intent();
-                shareIntent.setAction(Intent.ACTION_SEND);
-                shareIntent.setPackage("com.facebook.katana");
-                shareIntent.setType("video/*");
-
-                File file = new File(video.getFileUri());
-                Uri videoUri = FileProvider.getUriForFile(context,
-                        context.getApplicationContext().getPackageName() + ".provider", file);
-
-                shareIntent.putExtra(Intent.EXTRA_STREAM, videoUri);
-                context.startActivity(Intent.createChooser(shareIntent, "Send"));
-
-            });
-
-            ivMessenger.setOnClickListener(v -> {
-                if (!appInstalledOrNot(context, "com.facebook.orca")) {
-                    Toast.makeText(context, "App not Installed", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                FVideo video = videos.get(getAdapterPosition());
-
-                Intent shareIntent = new Intent();
-                shareIntent.setAction(Intent.ACTION_SEND);
-                shareIntent.setPackage("com.facebook.orca");
-                shareIntent.setType("video/*");
-
-                File file = new File(video.getFileUri());
-                Uri videoUri = FileProvider.getUriForFile(context,
-                        context.getApplicationContext().getPackageName() + ".provider", file);
-
-                shareIntent.putExtra(Intent.EXTRA_STREAM, videoUri);
-                context.startActivity(Intent.createChooser(shareIntent, "Send"));
-            });
-
-            ivWp.setOnClickListener(v -> {
-                if (!appInstalledOrNot(context, "com.whatsapp")) {
-                    Toast.makeText(context, "App not Installed", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                FVideo video = videos.get(getAdapterPosition());
-
-                Uri uri = Uri.parse(video.getFileUri());
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("video/*");
-                intent.setPackage("com.whatsapp");
-                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                intent.putExtra(Intent.EXTRA_STREAM, uri);
-
-                context.startActivity(intent);
-            });
-
         }
 
         @Override

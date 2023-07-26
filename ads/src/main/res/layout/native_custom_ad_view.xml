@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/ad_color"
     android:maxHeight="300dp"
     app:cardCornerRadius="16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@color/ad_color"
         android:layout_height="wrap_content"
         android:layout_margin="16dp">
 
@@ -43,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/poppins_bold"
-            android:textColor="@color/grey_level_4"
+            android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@id/advertiser_textView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -74,7 +76,7 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/poppins_regular"
             android:text="Install App"
-            android:textColor="@color/surface"
+            android:textColor="@color/white"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="@id/icon_image_view"
             app:layout_constraintEnd_toEndOf="parent"
@@ -97,6 +99,7 @@
             android:layout_width="0dp"
             android:layout_height="44dp"
             android:layout_marginTop="8dp"
+            android:backgroundTint="@color/blue_gradient_end"
             android:fontFamily="@font/poppins_bold"
             android:insetLeft="0dp"
             android:insetTop="0dp"
@@ -106,7 +109,6 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="12sp"
-            android:backgroundTint="@color/blue_gradient_end"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

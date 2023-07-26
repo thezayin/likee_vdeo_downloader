@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="text_color">#FF000000</color>
+
+
+    <color name="back_ground">#f3f3f3</color>
+    <color name="text_color">#0f1011</color>
+    <color name="icon_color">#0f1011</color>
+    <color name="card_color">#FFF</color>
+    <color name="btn_color">#FAC53B</color>
+
+    <color name="grey_level_1">#646464</color>
+
+    <color name="ad_color">#393939</color>
+
+
     <color name="ed_color">#FFFFFFFF</color>
     <color name="yt_red">#FF0000</color>
     <color name="light_grey_two">#B4B4B4</color>
@@ -11,7 +23,6 @@
     <color name="dark_pink">#FF2373</color>
 
 
-    <color name="grey_level_1">#646464</color>
     <color name="grey_level_2">#4E4E4E</color>
     <color name="grey_level_3">#393939</color>
     <color name="grey_level_4">#282828</color>
@@ -41,7 +52,7 @@
     <color name="green">#82b74b</color>
     <color name="bluee">#12e4d9</color>
 
-    <color name="ad_color">#3C3E42</color>
+
     <color name="gray_level_1">#121212</color>
     <color name="gray_level_2">#111111</color>
     <color name="gray_level_3">#181818</color>
@@ -79,7 +90,7 @@
 
 
     <color name="light_blue">#bfe2fe</color>
-    <color name="btn_color">#61649b</color>
+
     <color name="successful_color">#c0e0d3</color>
     <color name="background">#f2f2f2</color>
 

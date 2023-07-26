@@ -6,6 +6,8 @@
     <color name="gray">#282828</color>
     <color name="gray_btn">#BFBFBF</color>
 
+    <color name="ad_color">#393939</color>
+
     <color name="black_50opaque">#80000000</color>
     <color name="black_70opaque">#70000000</color>
     <color name="white_50opaque">#80FFFFFF</color>
@@ -44,7 +46,7 @@
     <color name="bluesh_gray">#80D0FF</color>
 
     <color name="background">#1E1E1E</color>
-    <color name="surface">#e6e7e9</color>
+    <color name="surface">#000000</color>
     <color name="surface_variant">#3A3A3A</color>
     <color name="surface_variant_2">#646464</color>
     <color name="primary_blue">#80D0FF</color>

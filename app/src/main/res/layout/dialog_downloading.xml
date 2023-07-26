@@ -18,7 +18,7 @@
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
         android:layout_marginTop="@dimen/_30sdp"
-        android:indeterminateTint="@color/pink"
+        android:indeterminateTint="@color/btn_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +31,7 @@
         android:layout_marginTop="36dp"
         android:layout_marginEnd="@dimen/_30sdp"
         android:text="Downloading..."
-        android:textColor="@color/woodsmoke"
+        android:textColor="@color/text_color"
         android:textSize="@dimen/_14ssp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
