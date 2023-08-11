@@ -115,7 +115,8 @@ class Utils {
                 Environment.getDataDirectory().path + RootDirectoryLikee + fileName
             )
             try {
-                MediaScannerConnection.scanFile(context,
+                MediaScannerConnection.scanFile(
+                    context,
                     arrayOf(File(Environment.DIRECTORY_DOWNLOADS + "/" + fileName).absolutePath),
                     null
                 ) { path, _ ->

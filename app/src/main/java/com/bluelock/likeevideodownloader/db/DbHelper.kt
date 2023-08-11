@@ -134,7 +134,7 @@ class DbHelper(context: Context?) :
         video.fileName = res.getString(FacebookDownloadEntity.INDEX_FILE_NAME)
         video.state = res.getInt(FacebookDownloadEntity.INDEX_STATE)
         video.fileUri = res.getString(FacebookDownloadEntity.INDEX_FILE_URI)
-        video.isWatermarked=(res.getInt(FacebookDownloadEntity.INDEX_IS_WATERMARKED) > 0)
+        video.isWatermarked = (res.getInt(FacebookDownloadEntity.INDEX_IS_WATERMARKED) > 0)
         video.downloadId = res.getLong(FacebookDownloadEntity.INDEX_DOWNLOAD_ID)
         video.outputPath = res.getString(FacebookDownloadEntity.INDEX_OUTPUT_PATH)
         video.videoSource = res.getInt(FacebookDownloadEntity.INDEX_VIDEO_SOURCE)

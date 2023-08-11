@@ -10,14 +10,14 @@ plugins {
 
 android {
     namespace 'com.bluelock.likeevideodownloader'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.bluelock.likeevideodownloader"
         minSdk 24
-        targetSdk 33
-        versionCode 5
-        versionName "0.0.5"
+        targetSdk 34
+        versionCode 6
+        versionName "0.0.6"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -128,4 +128,7 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-vision:20.0.0'
     implementation 'com.google.firebase:firebase-analytics:17.4.1'
+
+    //Animation Api
+    implementation 'com.airbnb.android:lottie:6.0.0'
 }

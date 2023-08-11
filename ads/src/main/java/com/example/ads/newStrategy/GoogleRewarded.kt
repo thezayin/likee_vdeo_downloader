@@ -8,6 +8,9 @@ import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import java.util.Stack
 
 
+@Suppress("UNCHECKED_CAST", "SENSELESS_COMPARISON", "SpellCheckingInspection",
+    "NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS"
+)
 class GoogleRewarded(context: Context?) {
     private val totalLevels = 4
     private var adUnits: ArrayList<ArrayList<Any>>? = null
@@ -89,7 +92,7 @@ class GoogleRewarded(context: Context?) {
 
     fun RewardedAdLoadSpecific(activity: Context?, adUnitId: String?, stack: Stack<RewardedAd>?) {
         val adRequest = AdRequest.Builder().build()
-        RewardedAd.load(activity, adUnitId, adRequest, object : RewardedAdLoadCallback() {
+        RewardedAd.load(activity, adUnitId!!, adRequest, object : RewardedAdLoadCallback() {
             override fun onAdFailedToLoad(loadAdError: LoadAdError) {
                 super.onAdFailedToLoad(loadAdError)
             }

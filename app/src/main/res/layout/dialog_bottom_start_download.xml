@@ -19,7 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_16sdp"
         android:layout_marginEnd="@dimen/_24sdp"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@id/dialog_back"
         app:layout_constraintTop_toTopOf="@id/dialog_back"
         app:srcCompat="@drawable/ic_cancel" />
@@ -64,7 +63,7 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_clear"
+        android:id="@+id/btn_download"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_30sdp"
         android:layout_marginTop="@dimen/_20sdp"

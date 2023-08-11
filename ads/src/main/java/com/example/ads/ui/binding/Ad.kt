@@ -9,9 +9,5 @@ fun NativeAd.show(
     binding: LayoutAdmobNativeMaxBinding?,
     onDismiss: () -> Unit,
 ) {
-    if (this == null) {
-        onDismiss()
-        return
-    }
     binding.show(coroutineScope, this, onDismiss)
 }

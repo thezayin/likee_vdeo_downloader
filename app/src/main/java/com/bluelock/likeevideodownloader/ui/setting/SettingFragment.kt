@@ -95,7 +95,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
                         val shareIntent = Intent(Intent.ACTION_SEND)
                         shareIntent.type = "text/plain"
                         shareIntent.putExtra(Intent.EXTRA_SUBJECT, R.string.app_name)
-                        var shareMessage = "\nLet me recommend you this application\n\n"
+                        var shareMessage = "\nLet me recommend you this application which will helps you to download Likee Videos for free\n\n"
                         shareMessage =
                             """
                             ${shareMessage + "https://play.google.com/store/apps/details?id=com.bluelock.likeevideodownloader"}

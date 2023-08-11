@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
     private static Retrofit retrofit = null;
 
-    public static Retrofit getInstance(String baseUrl){
+    public static Retrofit getInstance(String baseUrl) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = null;
@@ -42,7 +42,7 @@ public class ApiClient {
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create());
-        if (BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             builder.client(client);
         }
 

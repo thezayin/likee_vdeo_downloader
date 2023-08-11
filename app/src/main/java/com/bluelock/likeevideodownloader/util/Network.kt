@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.bluelock.likeevideodownloader.util
 
 import android.content.Context

@@ -1,6 +1,5 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:locale="en">
     <string name="app_name">Likee Downloader</string>
-
     <!--api links-->
     <string name="download_started">Download Started</string>
     <string name="enter_url">Enter Url</string>
@@ -37,10 +36,6 @@
     <string name="fb_login_protocol_scheme">fb1234</string>
     <string name="facebook_client_token">0ec429661843bb7356004a392a5c31e8</string>
 
-
-    <!-- Todo: Have to change this while  publishing-->
-
-    <!--Notice dialog api and app name-->
     <string name="base_url">https://sikderithub.com/dialog.php</string>
     <string name="app_name_web">VG</string>
 
@@ -57,7 +52,7 @@
     <string name="share_app">Share this App</string>
     <string name="share_message">Hey! I\'ve found this awesome app\nIt helps me to download Instagram photos directly to my device\nCheck it out here 👉 </string>
     <string name="select_an_app">Select an app to share</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 

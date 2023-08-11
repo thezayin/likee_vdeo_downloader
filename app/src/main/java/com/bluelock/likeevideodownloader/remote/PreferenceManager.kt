@@ -37,7 +37,7 @@ open class PreferenceManager @Inject constructor(
     val isFirstTimeAppOpen: Boolean
         get() = (preferences[FIRST_TIME_APP_OPEN] ?: false)
 
-    fun setTextToArtFeatureTried(isTried: Boolean){
+    fun setTextToArtFeatureTried(isTried: Boolean) {
         preferences[TEXT_TO_ART_FEATURE_TRIED] = isTried
     }
 

@@ -15,6 +15,7 @@ private const val SHOW_INTERSTITIAL = "show_interstitial"
 private const val NATIVE_AD = "native_ad_on_all_features"
 private const val SHOW_REWARD_AD = "show_reward_ad"
 private const val SHOW_DROP_DOWN = "show_drop_down_dialog"
+
 @Singleton
 class RemoteConfig @Inject constructor() {
 
@@ -33,12 +34,15 @@ class RemoteConfig @Inject constructor() {
         setDefaultsAsync(defaults)
         fetchAndActivate().let {
             it.addOnCompleteListener {
-                Log.d("jeje_remoteConfig", "fetchAndActivate: ${all.mapValues { (k, v) -> v.asString() }}")
+                Log.d(
+                    "jeje_remoteConfig",
+                    "fetchAndActivate: ${all.mapValues { (_, v) -> v.asString() }}"
+                )
             }
         }
     }
 
-    val showRewardAd:Boolean
+    val showRewardAd: Boolean
         get() = config[SHOW_REWARD_AD].asBoolean()
     val showAppOpenAd: Boolean
         get() = config[SHOW_APP_OPEN].asBoolean()

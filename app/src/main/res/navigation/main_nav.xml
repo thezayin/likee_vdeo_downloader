@@ -9,7 +9,7 @@
         android:id="@+id/dashboardFragment"
         android:name="com.bluelock.likeevideodownloader.ui.home.DashboardFragment"
         android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" >
+        tools:layout="@layout/fragment_dashboard">
         <action
             android:id="@+id/action_dashboardFragment_to_downloadedFragment"
             app:destination="@id/downloadedFragment" />

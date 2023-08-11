@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.analytics.utils
 
 import android.os.Bundle
