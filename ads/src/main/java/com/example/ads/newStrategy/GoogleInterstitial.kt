@@ -20,6 +20,7 @@ class GoogleInterstitial(context: Context?) {
     private val interMed = "ca-app-pub-9507635869843997/2524972129"
     private val interAll = "ca-app-pub-9507635869843997/5216316703"
 
+
     init {
         instantiateList()
         loadInitialInterstitials(context)
@@ -27,6 +28,15 @@ class GoogleInterstitial(context: Context?) {
 
     private fun instantiateList() {
         adUnits = ArrayList()
+
+//        val testId = "ca-app-pub-3940256099942544/1033173712"
+//
+//        adUnits!!.add(0, ArrayList(listOf(testId, Stack<InterstitialAd>())))
+//        adUnits!!.add(1, ArrayList(listOf(testId, Stack<InterstitialAd>())))
+//        adUnits!!.add(2, ArrayList(listOf(testId, Stack<InterstitialAd>())))
+//        adUnits!!.add(3, ArrayList(listOf(testId, Stack<InterstitialAd>())))
+//        adUnits!!.add(4, ArrayList(listOf(testId, Stack<InterstitialAd>())))
+
         adUnits!!.add(0, ArrayList(listOf(inter5, Stack<InterstitialAd>())))
         adUnits!!.add(1, ArrayList(listOf(inter4, Stack<InterstitialAd>())))
         adUnits!!.add(2, ArrayList(listOf(interHigh, Stack<InterstitialAd>())))

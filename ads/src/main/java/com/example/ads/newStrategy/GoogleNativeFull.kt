@@ -28,6 +28,14 @@ class GoogleNativeFull(context: Context?) {
 
     private fun instantiateList() {
         adUnits = ArrayList()
+
+//        val testId="ca-app-pub-3940256099942544/2247696110"
+//        adUnits!!.add(0, ArrayList(listOf(testId, Stack<NativeAd>())))
+//        adUnits!!.add(1, ArrayList(listOf(testId, Stack<NativeAd>())))
+//        adUnits!!.add(2, ArrayList(listOf(testId, Stack<NativeAd>())))
+//        adUnits!!.add(3, ArrayList(listOf(testId, Stack<NativeAd>())))
+//        adUnits!!.add(4, ArrayList(listOf(testId, Stack<NativeAd>())))
+
         adUnits!!.add(0, ArrayList(listOf(native5, Stack<NativeAd>())))
         adUnits!!.add(1, ArrayList(listOf(native4, Stack<NativeAd>())))
         adUnits!!.add(2, ArrayList(listOf(nativeHigh, Stack<NativeAd>())))

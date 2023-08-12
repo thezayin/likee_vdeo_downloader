@@ -18,6 +18,7 @@ import com.bluelock.likeevideodownloader.interfaces.ItemClickListener
 import com.bluelock.likeevideodownloader.remote.RemoteConfig
 import com.bluelock.likeevideodownloader.ui.base.BaseFragment
 import com.bluelock.likeevideodownloader.util.Utils
+import com.bluelock.likeevideodownloader.util.isConnected
 import com.example.ads.GoogleManager
 import com.example.ads.databinding.MediumNativeAdLayoutBinding
 import com.example.ads.databinding.NativeAdBannerLayoutBinding
@@ -27,6 +28,7 @@ import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.nativead.NativeAd
+import com.google.android.gms.ads.rewarded.RewardedAd
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -107,7 +109,7 @@ class DownloadedFragment : BaseFragment<FragmentDownloadedBinding>(), ItemClickL
 
 
     override fun onItemClicked(file: File) {
-        showInterstitialAd {}
+        showRewardedAd {}
         val uri =
             FileProvider.getUriForFile(
                 requireActivity(),
@@ -200,10 +202,37 @@ class DownloadedFragment : BaseFragment<FragmentDownloadedBinding>(), ItemClickL
                     if (remoteConfig.nativeAd) {
                         showNativeAd()
                     }
-                    delay(1000L)
-                    showInterstitialAd { }
+                    delay(2000L)
                 }
             }
+        }
+    }
+
+    private fun showRewardedAd(callback: () -> Unit) {
+        if (remoteConfig.showInterstitial) {
+            if (!requireActivity().isConnected()) {
+                callback.invoke()
+                return
+            }
+            val ad: RewardedAd? = googleManager.createRewardedAd()
+
+            if (ad == null) {
+                callback.invoke()
+            } else {
+                ad.fullScreenContentCallback = object : FullScreenContentCallback() {
+
+                    override fun onAdFailedToShowFullScreenContent(error: AdError) {
+                        super.onAdFailedToShowFullScreenContent(error)
+                        callback.invoke()
+                    }
+                }
+
+                ad.show(requireActivity()) {
+                    callback.invoke()
+                }
+            }
+        } else {
+            callback.invoke()
         }
     }
 

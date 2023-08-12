@@ -124,7 +124,6 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
 
         db = Database.init(requireActivity())
         db?.setCallback {
-            Log.d("TAG", "onUpdateDatabase: MainActivity")
             updateListData()
         }
 
@@ -214,8 +213,6 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
                             Toast.makeText(
                                 requireActivity(), "File doesn't exists", Toast.LENGTH_LONG
                             ).show()
-                            Log.d("TAG", "onItemClickListener: file " + file.path)
-
                             //Delete the video instance from the list
                             db?.deleteAVideo(video.downloadId)
                         }
@@ -335,9 +332,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
                     requireActivity()
                 ) {
                     if (consentInformation.consentStatus == ConsentInformation.ConsentStatus.OBTAINED) {
-                        Log.d(
-                            "jeje", "currentConsentStatus:${consentInformation.consentStatus}"
-                        )
+//nothing here
                     }
                     loadForm()
                 }
@@ -389,9 +384,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
     private fun showDropDown() {
         val nativeAdCheck = googleManager.createNativeFull()
         val nativeAd = googleManager.createNativeFull()
-        Log.d("ggg_nul", "nativeAd:${nativeAdCheck}")
         nativeAdCheck?.let {
-            Log.d("ggg_lest", "nativeAdEx:${nativeAd}")
             binding.apply {
                 dropLayout.bringToFront()
                 nativeViewDrop.bringToFront()
@@ -413,7 +406,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
     private fun onClick() {
         binding.apply {
             btnDownloaded.setOnClickListener {
-                showInterstitialAd {}
+                showRewardedAd {}
                 val action =
                     DashboardFragmentDirections.actionDashboardFragmentToDownloadedFragment()
                 findNavController().navigate(action)
@@ -465,10 +458,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
                     )
                 }.request { allGranted, _, _ ->
                     if (allGranted) {
-                        Log.d(
-                            "jeje_Ok", "All permissions are granted"
-
-                        )
+                        Log.d("jeje_Ok", "All permissions are granted")
                     } else {
                         Toast.makeText(
                             requireActivity(),
@@ -516,7 +506,6 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
                     if (response.isSuccessful) {
                         val likeeVideo = response.body()
                         if (likeeVideo == null) {
-                            Log.d("jeje_res_null", "onResponse: response is null")
                             showStartDownloadDialogR("")
                             return
                         }
@@ -539,7 +528,6 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
 
                 override fun onFailure(call: Call<LikeeVideo?>, t: Throwable) {
                     Utils.hideProgressDialog()
-                    Log.d("jeje_fail", "onFailure: is called")
                     showStartDownloadDialogR("")
                 }
             })
@@ -558,14 +546,12 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
         val intent = requireActivity().intent
 
         if (intent == null || intent.action == null) {
-            Log.d("TAG", "handleIntent: intent is null")
             return
         }
         if (intent.action == Intent.ACTION_SEND && intent.type != null) {
             if (intent.type == "text/plain") {
                 // Extract the shared video URL from the intent's extras bundle
                 val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT) ?: return
-                Log.d("TAG", "handleIntent: sharedText $sharedText")
                 onCreateIsCalled = false
             }
         }
@@ -576,7 +562,6 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
             downloadingDialog.dismiss()
             val id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
             if (downloadVideos.containsKey(id)) {
-                Log.d("receiver", "onReceive: download complete")
                 val fVideo: FVideo? = db?.getVideo(id)
                 val videoPath: String = Environment.getExternalStorageDirectory()
                     .toString() + "/Download" + Utils.RootDirectoryLikee + fVideo?.fileName
@@ -601,12 +586,12 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
                 }
 
                 btnOk?.setOnClickListener {
-                    showInterstitialAd {}
+                    showRewardedAd {}
                     dialog.dismiss()
 
                 }
                 btnClose?.setOnClickListener {
-                    showInterstitialAd {}
+                    showRewardedAd {}
                     dialog.dismiss()
                 }
 
@@ -717,8 +702,6 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
 
     private fun videoDownloadR(videoUrl: String?) {
         binding.apply {
-            //Log.d(TAG, "onPostExecute: " + result);
-            Log.d("TAG", "video url: $videoUrl")
             if (videoUrl == null || videoUrl == "") {
                 Toast.makeText(activity, "This video quality is not available", Toast.LENGTH_SHORT)
                     .show()

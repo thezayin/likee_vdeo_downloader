@@ -14,6 +14,7 @@ import com.bluelock.likeevideodownloader.R
 import com.bluelock.likeevideodownloader.databinding.FragmentSettingBinding
 import com.bluelock.likeevideodownloader.remote.RemoteConfig
 import com.bluelock.likeevideodownloader.ui.base.BaseFragment
+import com.bluelock.likeevideodownloader.util.isConnected
 import com.example.ads.GoogleManager
 import com.example.ads.databinding.MediumNativeAdLayoutBinding
 import com.example.ads.databinding.NativeAdBannerLayoutBinding
@@ -23,6 +24,7 @@ import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.nativead.NativeAd
+import com.google.android.gms.ads.rewarded.RewardedAd
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -56,12 +58,12 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
         lifecycleScope.launch {
             binding.apply {
                 btnBack.setOnClickListener {
-                    showInterstitialAd {}
+                    showRewardedAd {}
                     findNavController().navigateUp()
                 }
 
                 lTerm.setOnClickListener {
-                    showInterstitialAd {}
+                    showRewardedAd {}
                     val intent = Intent(
                         Intent.ACTION_VIEW,
                         Uri.parse("https://bluelocksolutions.blogspot.com/2023/06/likee-downloader-terms-and-conditions.html")
@@ -70,7 +72,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
 
                 }
                 lPrivacy.setOnClickListener {
-                    showInterstitialAd {}
+                    showRewardedAd {}
                     val intent = Intent(
                         Intent.ACTION_VIEW,
                         Uri.parse("https://bluelocksolutions.blogspot.com/2023/06/privacy-policy-for-likee-downloader.html")
@@ -79,7 +81,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
 
                 }
                 lContact.setOnClickListener {
-                    showInterstitialAd {}
+                    showRewardedAd {}
                     val emailIntent = Intent(
                         Intent.ACTION_SENDTO,
                         Uri.parse("mailto:blue.lock.testing@gmail.com")
@@ -90,12 +92,13 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
 
                 }
                 lShare.setOnClickListener {
-                    showInterstitialAd {}
+                    showRewardedAd {}
                     try {
                         val shareIntent = Intent(Intent.ACTION_SEND)
                         shareIntent.type = "text/plain"
                         shareIntent.putExtra(Intent.EXTRA_SUBJECT, R.string.app_name)
-                        var shareMessage = "\nLet me recommend you this application which will helps you to download Likee Videos for free\n\n"
+                        var shareMessage =
+                            "\nLet me recommend you this application which will helps you to download Likee Videos for free\n\n"
                         shareMessage =
                             """
                             ${shareMessage + "https://play.google.com/store/apps/details?id=com.bluelock.likeevideodownloader"}
@@ -108,7 +111,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
 
                 }
                 lMore.setOnClickListener {
-                    showInterstitialAd {}
+                    showRewardedAd {}
                     val intent = Intent(
                         Intent.ACTION_VIEW,
                         Uri.parse("market://details?id=7137279946828938614")
@@ -165,10 +168,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
     private fun showDropDown() {
         val nativeAdCheck = googleManager.createNativeFull()
         val nativeAd = googleManager.createNativeFull()
-        Log.d("ggg_nul", "nativeAd:${nativeAdCheck}")
-
         nativeAdCheck?.let {
-            Log.d("ggg_lest", "nativeAdEx:${nativeAd}")
             binding.apply {
                 dropLayout.bringToFront()
                 nativeViewDrop.bringToFront()
@@ -183,10 +183,37 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
             binding.btnDropDown.setOnClickListener {
                 showInterstitialAd {}
                 binding.dropLayout.visibility = View.GONE
-
             }
             binding.btnDropUp.visibility = View.INVISIBLE
 
+        }
+    }
+
+    private fun showRewardedAd(callback: () -> Unit) {
+        if (remoteConfig.showInterstitial) {
+            if (!requireActivity().isConnected()) {
+                callback.invoke()
+                return
+            }
+            val ad: RewardedAd? = googleManager.createRewardedAd()
+
+            if (ad == null) {
+                callback.invoke()
+            } else {
+                ad.fullScreenContentCallback = object : FullScreenContentCallback() {
+
+                    override fun onAdFailedToShowFullScreenContent(error: AdError) {
+                        super.onAdFailedToShowFullScreenContent(error)
+                        callback.invoke()
+                    }
+                }
+
+                ad.show(requireActivity()) {
+                    callback.invoke()
+                }
+            }
+        } else {
+            callback.invoke()
         }
     }
 
@@ -199,7 +226,6 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
                         showNativeAd()
                     }
                     delay(1000L)
-                    showInterstitialAd { }
                 }
             }
         }
