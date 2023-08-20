@@ -132,14 +132,11 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
         )
 
         showConsent()
-
         showDropDown()
-
         initViews()
         handleIntent()
         observe()
         showRecursiveAds()
-        onClick()
 
     }
 
@@ -157,11 +154,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
                 adView?.visibility = View.VISIBLE
             }
         }
-
         downloadingDialog.behavior.isDraggable = false
-//        downloadingDialog.setCanceledOnTouchOutside(false)
-
-
     }
 
     private fun initViews() {
@@ -185,7 +178,6 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
                     FVideo.COMPLETE -> {
                         //complete download and processing ready to use
                         val location: String = video.fileUri!!
-
 
                         //Downloaded video play into video player
                         val file = File(location)
@@ -221,7 +213,6 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
                     else -> {}
                 }
             }
-
             recyclerView.layoutManager = LinearLayoutManager(requireActivity())
             updateListData()
             recyclerView.adapter = adapter
@@ -240,14 +231,17 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
                     db?.deleteAVideo(videos!![adapterPosition].downloadId)
                 }
             }).attachToRecyclerView(recyclerView)
-
         }
     }
 
     private fun observe() {
         binding.apply {
+            btnDownloaded.setOnClickListener {
+                val action = DashboardFragmentDirections.actionDashboardFragmentToSettingFragment()
+                findNavController().navigate(action)
+            }
+
             btnSetting.setOnClickListener {
-                showRewardedAd {}
                 val action = DashboardFragmentDirections.actionDashboardFragmentToSettingFragment()
                 findNavController().navigate(action)
             }
@@ -276,11 +270,12 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
             })
 
             ivCross.setOnClickListener {
-                showRewardedAd {}
+                showInterstitialAd {}
                 linkEt.text = null
             }
 
             btnDownload.setOnClickListener {
+                showInterstitialAd { }
                 val ll = linkEt.text.toString().trim { it <= ' ' }
                 analytics.logEvent(
                     AnalyticsEvent.LINK(
@@ -309,135 +304,6 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
             }
         }
     }
-
-
-    private fun showConsent() {
-        val params = ConsentRequestParameters.Builder().setTagForUnderAgeOfConsent(false).build()
-
-        consentInformation = UserMessagingPlatform.getConsentInformation(requireActivity())
-        consentInformation.requestConsentInfoUpdate(requireActivity(), params, {
-            if (consentInformation.isConsentFormAvailable) {
-                loadForm()
-            }
-        }, {
-            // Handle the error.
-        })
-    }
-
-    private fun loadForm() {
-        UserMessagingPlatform.loadConsentForm(requireActivity(), {
-            csForm = it
-            if (consentInformation.consentStatus == ConsentInformation.ConsentStatus.REQUIRED) {
-                csForm.show(
-                    requireActivity()
-                ) {
-                    if (consentInformation.consentStatus == ConsentInformation.ConsentStatus.OBTAINED) {
-//nothing here
-                    }
-                    loadForm()
-                }
-            }
-        }, {
-            // Handle the error.
-        })
-    }
-
-
-    //Ads Views
-    private fun showNativeAd() {
-        if (remoteConfig.nativeAd) {
-            nativeAd = googleManager.createNativeAdSmall()
-            nativeAd?.let {
-                val nativeAdLayoutBinding = NativeAdBannerLayoutBinding.inflate(layoutInflater)
-                nativeAdLayoutBinding.nativeAdView.loadNativeAd(ad = it)
-                binding.nativeView.removeAllViews()
-                binding.nativeView.addView(nativeAdLayoutBinding.root)
-                binding.nativeView.visibility = View.VISIBLE
-            }
-        }
-    }
-
-    private fun showInterstitialAd(callback: () -> Unit) {
-
-        val ad: InterstitialAd? = googleManager.createInterstitialAd(GoogleInterstitialType.MEDIUM)
-
-        if (ad == null) {
-            callback.invoke()
-            return
-        } else {
-            ad.fullScreenContentCallback = object : FullScreenContentCallback() {
-                override fun onAdDismissedFullScreenContent() {
-                    super.onAdDismissedFullScreenContent()
-                    callback.invoke()
-                }
-
-                override fun onAdFailedToShowFullScreenContent(error: AdError) {
-                    super.onAdFailedToShowFullScreenContent(error)
-                    callback.invoke()
-                }
-            }
-            ad.show(requireActivity())
-        }
-
-    }
-
-    private fun showDropDown() {
-        val nativeAdCheck = googleManager.createNativeFull()
-        val nativeAd = googleManager.createNativeFull()
-        nativeAdCheck?.let {
-            binding.apply {
-                dropLayout.bringToFront()
-                nativeViewDrop.bringToFront()
-            }
-            val nativeAdLayoutBinding = MediumNativeAdLayoutBinding.inflate(layoutInflater)
-            nativeAdLayoutBinding.nativeAdView.loadNativeAd(ad = it)
-            binding.nativeViewDrop.removeAllViews()
-            binding.nativeViewDrop.addView(nativeAdLayoutBinding.root)
-            binding.nativeViewDrop.visibility = View.VISIBLE
-            binding.dropLayout.visibility = View.VISIBLE
-
-            binding.btnDropDown.setOnClickListener {
-                binding.dropLayout.visibility = View.GONE
-            }
-            binding.btnDropUp.visibility = View.INVISIBLE
-        }
-    }
-
-    private fun onClick() {
-        binding.apply {
-            btnDownloaded.setOnClickListener {
-                showRewardedAd {}
-                val action =
-                    DashboardFragmentDirections.actionDashboardFragmentToDownloadedFragment()
-                findNavController().navigate(action)
-            }
-
-            btnDownload.setOnClickListener {
-                val ll = linkEt.text.toString().trim { it <= ' ' }
-                if (ll == "") {
-                    Utils.setToast(
-                        requireActivity(), resources.getString(R.string.enter_url)
-                    )
-                } else if (!Patterns.WEB_URL.matcher(ll).matches()) {
-                    Utils.setToast(
-                        requireActivity(), resources.getString(R.string.enter_valid_url)
-                    )
-                } else {
-                    if (urlType == 0) {
-                        urlType = Constants.LIKEE_url
-                    }
-                    when (urlType) {
-
-                        Constants.LIKEE_url -> {
-                            getLikeData()
-                        }
-                    }
-
-                }
-            }
-        }
-    }
-
 
     private fun checkPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -483,20 +349,14 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
                     "OK",
                     "Cancel"
                 )
-            }.request { _, _, _ -> /*if (allGranted) {
-                                        Toast.makeText(MainActivity.this, "All permissions are granted", Toast.LENGTH_LONG).show();
-                                    } else {
-                                        Toast.makeText(MainActivity.this, "These permissions are denied: $deniedList", Toast.LENGTH_LONG).show();
-                                    }*/
+            }.request { _, _, _ ->
             }
         }
     }
 
-
     private fun getLikeData() {
         binding.apply {
             Utils.createLikeeFolder()
-
             Utils.showProgressDialog(requireActivity())
             val videoLink: String = linkEt.text.toString().trim { it <= ' ' }
             val video = downloadAPIInterface!!.getLikeeVideos(videoLink)
@@ -534,17 +394,14 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
         }
     }
 
-
     private fun updateListData() {
         binding.apply {
             videos = db?.recentVideos
         }
     }
 
-
     private fun handleIntent() {
         val intent = requireActivity().intent
-
         if (intent == null || intent.action == null) {
             return
         }
@@ -586,12 +443,12 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
                 }
 
                 btnOk?.setOnClickListener {
-                    showRewardedAd {}
+                    showInterstitialAd {}
                     dialog.dismiss()
 
                 }
                 btnClose?.setOnClickListener {
-                    showRewardedAd {}
+                    showInterstitialAd {}
                     dialog.dismiss()
                 }
 
@@ -626,19 +483,19 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
                 dialog.setCanceledOnTouchOutside(false)
 
                 btnOk?.setOnClickListener {
-                    showRewardedAd {}
+                    showInterstitialAd {}
                     dialog.dismiss()
 
                 }
                 btnCancel?.setOnClickListener {
-                    showRewardedAd { }
+                    showInterstitialAd { }
                     dialog.dismiss()
                 }
                 dialog.show()
                 return
             }
-            lifecycleScope.launch {
 
+            lifecycleScope.launch {
                 val dialog = BottomSheetDialog(requireActivity(), R.style.SheetDialog)
                 dialog.setContentView(R.layout.dialog_bottom_start_download)
                 val btnDownload = dialog.findViewById<Button>(R.id.btn_download)
@@ -659,14 +516,14 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
                 dialog.behavior.isDraggable = false
                 dialog.setCanceledOnTouchOutside(false)
                 btnDownload?.setOnClickListener {
-                    showRewardedAd { }
-                    videoDownloadR(link)
-                    dialog.dismiss()
-                    downloadingDialog.show()
-
+                    showRewardedAd {
+                        videoDownloadR(link)
+                        dialog.dismiss()
+                        downloadingDialog.show()
+                    }
                 }
                 btnCancel?.setOnClickListener {
-                    showRewardedAd { }
+                    showInterstitialAd { }
                     dialog.dismiss()
                 }
                 dialog.show()
@@ -711,9 +568,9 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
             downloadVideos[fVideo.downloadId] = fVideo
             linkEt.setText("")
         }
-
     }
 
+    //Ads Views
     private fun showRewardedAd(callback: () -> Unit) {
         if (remoteConfig.showInterstitial) {
             if (!requireActivity().isConnected()) {
@@ -742,15 +599,74 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
         }
     }
 
+    private fun showInterstitialAd(callback: () -> Unit) {
+        if (remoteConfig.showInterstitial) {
+            val ad: InterstitialAd? =
+                googleManager.createInterstitialAd(GoogleInterstitialType.MEDIUM)
+
+            if (ad == null) {
+                callback.invoke()
+                return
+            } else {
+                ad.fullScreenContentCallback = object : FullScreenContentCallback() {
+                    override fun onAdDismissedFullScreenContent() {
+                        super.onAdDismissedFullScreenContent()
+                        callback.invoke()
+                    }
+
+                    override fun onAdFailedToShowFullScreenContent(error: AdError) {
+                        super.onAdFailedToShowFullScreenContent(error)
+                        callback.invoke()
+                    }
+                }
+                ad.show(requireActivity())
+            }
+        } else {
+            callback.invoke()
+        }
+
+    }
+
+    private fun showDropDown() {
+        val nativeAdCheck = googleManager.createNativeFull()
+        val nativeAd = googleManager.createNativeFull()
+        nativeAdCheck?.let {
+            binding.apply {
+                dropLayout.bringToFront()
+                nativeViewDrop.bringToFront()
+            }
+            val nativeAdLayoutBinding = MediumNativeAdLayoutBinding.inflate(layoutInflater)
+            nativeAdLayoutBinding.nativeAdView.loadNativeAd(ad = it)
+            binding.nativeViewDrop.removeAllViews()
+            binding.nativeViewDrop.addView(nativeAdLayoutBinding.root)
+            binding.nativeViewDrop.visibility = View.VISIBLE
+            binding.dropLayout.visibility = View.VISIBLE
+
+            binding.btnDropDown.setOnClickListener {
+                binding.dropLayout.visibility = View.GONE
+            }
+            binding.btnDropUp.visibility = View.INVISIBLE
+        }
+    }
+
+    private fun showNativeAd() {
+        nativeAd = googleManager.createNativeAdSmall()
+        nativeAd?.let {
+            val nativeAdLayoutBinding = NativeAdBannerLayoutBinding.inflate(layoutInflater)
+            nativeAdLayoutBinding.nativeAdView.loadNativeAd(ad = it)
+            binding.nativeView.removeAllViews()
+            binding.nativeView.addView(nativeAdLayoutBinding.root)
+            binding.nativeView.visibility = View.VISIBLE
+        }
+    }
+
     private fun showRecursiveAds() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 while (this.isActive) {
+                    showDropDown()
                     showNativeAd()
-                    if (remoteConfig.nativeAd) {
-                        showNativeAd()
-                    }
-                    delay(1000L)
+                    delay(9000L)
                 }
             }
         }
@@ -758,5 +674,36 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
 
     fun showNatAd(): Boolean {
         return remoteConfig.nativeAd
+    }
+
+    private fun showConsent() {
+        val params = ConsentRequestParameters.Builder().setTagForUnderAgeOfConsent(false).build()
+
+        consentInformation = UserMessagingPlatform.getConsentInformation(requireActivity())
+        consentInformation.requestConsentInfoUpdate(requireActivity(), params, {
+            if (consentInformation.isConsentFormAvailable) {
+                loadForm()
+            }
+        }, {
+            // Handle the error.
+        })
+    }
+
+    private fun loadForm() {
+        UserMessagingPlatform.loadConsentForm(requireActivity(), {
+            csForm = it
+            if (consentInformation.consentStatus == ConsentInformation.ConsentStatus.REQUIRED) {
+                csForm.show(
+                    requireActivity()
+                ) {
+                    if (consentInformation.consentStatus == ConsentInformation.ConsentStatus.OBTAINED) {
+                        //nothing here
+                    }
+                    loadForm()
+                }
+            }
+        }, {
+            // Handle the error.
+        })
     }
 }
