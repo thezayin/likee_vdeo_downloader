@@ -1,6 +1,7 @@
-Likee Video Downloader
+**Likee Video Downloader**
 
 Play Store Link: https://play.google.com/store/apps/details?id=com.bluelock.likeevideodownloader
+
 Complete optimized code to download any private or public video form moj-app without watermarks. Code is written in kotlin. There are some classes in java. If you can refactor these classes into kotlin you are most welcome to do that. 
 
 **Major technologies**
@@ -20,10 +21,10 @@ Download videos from Likee withour water-marks
 Download videos with the built-in download manager
 Play videos offline with the built-in player
 
-Screenshots# likee_vdeo_downloader
+**Screenshots# **
+
 ![unnamed](https://github.com/thezayin/likee_vdeo_downloader/assets/140496836/cb9c9c8d-8b64-449e-94cc-2a3c28998968)
 ![unnamed (2)](https://github.com/thezayin/likee_vdeo_downloader/assets/140496836/efd25c97-c602-48e4-afe1-967fb7a431a3)
-
 
 ![unnamed (1)](https://github.com/thezayin/likee_vdeo_downloader/assets/140496836/435c2908-0253-4eed-902d-38ead17f0085)
 ![unnamed (2)](https://github.com/thezayin/likee_vdeo_downloader/assets/140496836/8ff52c6a-269c-4fb8-ac76-907f492b50a5)
