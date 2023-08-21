@@ -6,20 +6,21 @@ Complete optimized code to download any private or public video form moj-app wit
 
 **Major technologies**
 
-Language: Kotlin
-Architecture: MVVM
-Android architecture components: ViewModel, LiveData, Room
-Dependency injection: Dagger2
-Network: Retrofit, Okhttp
-Testing: JUnit, Espresso, Mockito
-Data layer with repository pattern and RxJava
-Continuous integration with CircleCI
-Run instrumented tests with Firebase Test Lab
+1. Language: Kotlin
+2. Architecture: MVVM
+3. Android architecture components: ViewModel, LiveData, Room
+4. Dependency injection: Dagger2
+5. Network: Retrofit, Okhttp
+6. Testing: JUnit, Espresso, Mockito
+7. Data layer with repository pattern and RxJava
+8. Continuous integration with CircleCI
+9. Run instrumented tests with Firebase Test Lab
 
 **Features**
-Download videos from Likee withour water-marks
-Download videos with the built-in download manager
-Play videos offline with the built-in player
+
+1. Download videos from Likee withour water-marks
+2. Download videos with the built-in download manager
+3. Play videos offline with the built-in player
 
 **Screenshots:**
 
