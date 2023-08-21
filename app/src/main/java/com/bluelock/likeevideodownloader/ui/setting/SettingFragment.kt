@@ -40,23 +40,20 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
 
     private var nativeAd: NativeAd? = null
 
-
     @Inject
     lateinit var remoteConfig: RemoteConfig
 
     override fun onCreatedView() {
-
         observer()
-        showRecursiveAds()
-        showDropDown()
-
+        if (remoteConfig.nativeAd) {
+            showRecursiveAds()
+        }
     }
 
     private fun observer() {
         lifecycleScope.launch {
             binding.apply {
                 btnBack.setOnClickListener {
-                    showInterstitialAd {}
                     findNavController().navigateUp()
                 }
 
@@ -95,7 +92,8 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
                         val shareIntent = Intent(Intent.ACTION_SEND)
                         shareIntent.type = "text/plain"
                         shareIntent.putExtra(Intent.EXTRA_SUBJECT, R.string.app_name)
-                        var shareMessage = "\nLet me recommend you this application which will helps you to download Likee Videos for free\n\n"
+                        var shareMessage =
+                            "\nLet me recommend you this application which will helps you to download Likee Videos for free\n\n"
                         shareMessage =
                             """
                             ${shareMessage + "https://play.google.com/store/apps/details?id=com.bluelock.likeevideodownloader"}
@@ -119,7 +117,6 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
             }
         }
     }
-
 
     private fun showInterstitialAd(callback: () -> Unit) {
         if (remoteConfig.showInterstitial) {
@@ -148,27 +145,20 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
         }
     }
 
-
     private fun showNativeAd() {
-        if (remoteConfig.nativeAd) {
-            nativeAd = googleManager.createNativeAdSmall()
-            nativeAd?.let {
-                val nativeAdLayoutBinding = NativeAdBannerLayoutBinding.inflate(layoutInflater)
-                nativeAdLayoutBinding.nativeAdView.loadNativeAd(ad = it)
-                binding.nativeView.removeAllViews()
-                binding.nativeView.addView(nativeAdLayoutBinding.root)
-                binding.nativeView.visibility = View.VISIBLE
-            }
+        nativeAd = googleManager.createNativeAdSmall()
+        nativeAd?.let {
+            val nativeAdLayoutBinding = NativeAdBannerLayoutBinding.inflate(layoutInflater)
+            nativeAdLayoutBinding.nativeAdView.loadNativeAd(ad = it)
+            binding.nativeView.removeAllViews()
+            binding.nativeView.addView(nativeAdLayoutBinding.root)
+            binding.nativeView.visibility = View.VISIBLE
         }
     }
 
     private fun showDropDown() {
         val nativeAdCheck = googleManager.createNativeFull()
-        val nativeAd = googleManager.createNativeFull()
-        Log.d("ggg_nul", "nativeAd:${nativeAdCheck}")
-
         nativeAdCheck?.let {
-            Log.d("ggg_lest", "nativeAdEx:${nativeAd}")
             binding.apply {
                 dropLayout.bringToFront()
                 nativeViewDrop.bringToFront()
@@ -181,9 +171,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
             binding.dropLayout.visibility = View.VISIBLE
 
             binding.btnDropDown.setOnClickListener {
-                showInterstitialAd {}
                 binding.dropLayout.visibility = View.GONE
-
             }
             binding.btnDropUp.visibility = View.INVISIBLE
 
@@ -195,11 +183,9 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 while (this.isActive) {
                     showNativeAd()
-                    if (remoteConfig.nativeAd) {
-                        showNativeAd()
-                    }
-                    delay(1000L)
                     showInterstitialAd { }
+                    showDropDown()
+                    delay(30000L)
                 }
             }
         }
