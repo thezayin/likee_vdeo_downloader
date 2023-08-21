@@ -21,7 +21,7 @@ Download videos from Likee withour water-marks
 Download videos with the built-in download manager
 Play videos offline with the built-in player
 
-**Screenshots# **
+**Screenshots:**
 
 ![unnamed](https://github.com/thezayin/likee_vdeo_downloader/assets/140496836/cb9c9c8d-8b64-449e-94cc-2a3c28998968)
 ![unnamed (2)](https://github.com/thezayin/likee_vdeo_downloader/assets/140496836/efd25c97-c602-48e4-afe1-967fb7a431a3)
