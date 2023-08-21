@@ -2,7 +2,7 @@
 
 Play Store Link: https://play.google.com/store/apps/details?id=com.bluelock.likeevideodownloader
 
-Complete optimized code to download any private or public video form moj-app without watermarks. Code is written in kotlin. There are some classes in java. If you can refactor these classes into kotlin you are most welcome to do that. 
+Complete optimized code to download any private or public video form Likee-app without watermarks. Code is written in kotlin. There are some classes in java. If you can refactor these classes into kotlin you are most welcome to do that. 
 
 **Major technologies**
 
